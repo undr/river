@@ -16,21 +16,44 @@ And then execute:
 ## Usage
 
     class HomeController < ApplicationController
+      before_filter :find_pages
+
       def stream
-        stream_json_in_batches(generate_data, batch_size: 2)
+        stream_json_in_batches(@pages, batch_size: 2)
       end
 
       def chunked_stream
-        stream_json_in_batches(generate_data, chunked: true, batch_size: 2)
+        stream_json_in_batches(@pages, chunked: true, batch_size: 2)
       end
 
       private
 
-      def generate_data
-        Page.where('id < 10')
+      def find_pages
+        @pages = Page.where('id < 10')
       end
     end
 
+Or:
+
+    class HomeController < ApplicationController
+      respond_to :json
+
+      before_filter :find_pages
+
+      def stream
+        respond_with(@pages, in_batches: { batch_size: 2 })
+      end
+
+      def chunked_stream
+        respond_with(@pages, in_batches: { chunked: true, batch_size: 2 })
+      end
+
+      private
+
+      def find_pages
+        @pages = Page.where('id < 10')
+      end
+    end
 
 
     undr$ telnet localhost 3000

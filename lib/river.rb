@@ -5,6 +5,7 @@ module River
 
   autoload :Streamer
   autoload :ActionController
+  autoload :Responder
 end
 
 require 'river/railtie' if defined?(Rails)
