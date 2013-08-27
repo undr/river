@@ -55,6 +55,7 @@ Or:
       end
     end
 
+Chunked JSON:
 
     undr$ telnet localhost 3000
     Trying ::1...
@@ -75,7 +76,7 @@ Or:
     [{"body":"<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.</p>","created_at":"2013-08-26T20:11:11Z","id":9,"title":"Lorem Ipsum Dolor Sit Amet, Consectetuer Adipiscing Elit","updated_at":"2013-08-26T20:11:11Z"}]
     0
 
-
+Not chunked JSON: 
 
     undr$ telnet localhost 3000
     Trying ::1...
